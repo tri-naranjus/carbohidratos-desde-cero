@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Carbohidratos desde cero</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;600&family=Inter:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 
 /* Cuaderno de fisiología: columna de lectura en serif, rótulos y cifras como en un ciclocomputador, ámbar para el carbohidrato. */
@@ -167,6 +167,24 @@ tr.sel td { background: var(--panel) }
   nav.indice .grupo, nav.indice .estado { grid-column: 1 / -1 }
 }
 
+/* Identidad de Tri-Naranjus: negro sobre crema, naranja de marca para el carbohidrato y la llamada principal. */
+:root {
+  --bg: #FAFAF7; --panel: #F0EDE5; --ink: #0A0A0A; --muted: #5C5C57; --line: #E0DED6;
+  --accent: #0A0A0A; --cho: #C1440E; --deficit: #A01D1D; --ok: #1A6A3A; --enlace: #A63808; --sobre-cho: #FFFFFF; --provbg: #FBE9DD;
+  --display: "Oswald", Impact, "Arial Narrow", sans-serif;
+  --titular: "Bebas Neue", "Oswald", Impact, sans-serif;
+  --body: "Inter", -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111111; --panel: #1E1E1C; --ink: #F6F4EF; --muted: #B5B5AE; --line: #34342F;
+  --accent: #F6F4EF; --cho: #ED7B38; --deficit: #EF6B5E; --ok: #3FBF8A; --enlace: #ED7B38; --sobre-cho: #111111; --provbg: #3A2414; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #111111; --panel: #1E1E1C; --ink: #F6F4EF; --muted: #B5B5AE; --line: #34342F;
+  --accent: #F6F4EF; --cho: #ED7B38; --deficit: #EF6B5E; --ok: #3FBF8A; --enlace: #ED7B38; --sobre-cho: #111111; --provbg: #3A2414; color-scheme: dark }
+body { font-size: 17px; line-height: 1.65 }
+h1 { font-family: var(--titular); font-weight: 400; font-size: clamp(54px, 8vw, 92px); line-height: .95; letter-spacing: .01em }
+h2, h3 { font-weight: 600 }
+a { color: var(--enlace) }
 nav.indice { max-height: calc(100vh - 40px); overflow-y: auto }
 .menu-l { display: grid; gap: 2px }
 .menu-b { display: none }
@@ -184,7 +202,8 @@ nav.indice { max-height: calc(100vh - 40px); overflow-y: auto }
 .mapa .pr { font: 500 13px var(--mono); color: var(--muted); white-space: nowrap }
 .mapa .pr.ok { color: var(--ok) }
 .seguir { margin-top: 22px }
-.btn-g { display: inline-block; font: 600 21px var(--display); background: var(--accent); color: var(--bg); border-radius: 3px; padding: 10px 20px; text-decoration: none }
+.btn-g { display: inline-block; font: 600 21px var(--display); background: var(--cho); color: var(--sobre-cho); border-radius: 3px; padding: 10px 20px; text-decoration: none }
+.btn-g:hover { filter: brightness(1.08) }
 
 .paso h3 { margin-top: 38px }
 .objetivo { font: 400 14px/1.5 var(--mono); color: var(--muted); margin-top: 14px }
@@ -329,7 +348,7 @@ table.simple td, table.simple th { white-space: normal }
   <div class="seguir"><a class="btn-g" id="seguir" href="#p1">Empezar por el paso 1</a></div>
 
   <h3>Antes de empezar, tus datos</h3>
-  <p>Con el peso basta para casi todo. Los ejercicios y las calculadoras usarán estos números. En ámbar, valores de ejemplo: cámbialos por los tuyos.</p>
+  <p>Con el peso basta para casi todo. Los ejercicios y las calculadoras usarán estos números. Los recuadros en naranja claro tienen valores de ejemplo: cámbialos por los tuyos.</p>
   <p>Dos de ellos quizá no te suenen. El <strong>% de grasa</strong> es la parte de tu peso que es grasa; si no lo sabes, deja el valor orientativo. La <strong>actividad diaria</strong> indica cuánto te mueves fuera del entrenamiento. Los dos se explican en el curso; puedes volver aquí a cambiarlos cuando quieras.</p>
   <div class="rejilla" id="basicos"></div>
   <p class="nota">Se guardan solo en este navegador. Nadie más los ve, tampoco el autor del curso.</p>
@@ -1376,7 +1395,7 @@ const CAMPOS_PERFIL = [
 
 function R_perfil() {
   const p = S.perfil, d = M.derivados(p), prov = p.prov || {};
-  return cabecera("Tus datos", "Perfil", "Alimenta todas las calculadoras. En ámbar, los valores provisionales: cámbialos por los tuyos.") +
+  return cabecera("Tus datos", "Perfil", "Alimenta todas las calculadoras. En naranja, los valores provisionales: cámbialos por los tuyos.") +
     `<div class="rejilla">${CAMPOS_PERFIL.filter(c => AV() || !c[4]).map(([k, t, u, h]) => `<label class="campo">${t} <span class="u">${u}</span>${fNum("perfil." + k, p[k], { prov: prov[k], a: t })}${h ? `<span class="hint">${h}</span>` : ""}</label>`).join("")}
     <label class="campo">Sexo${fSel("perfil.Sexo", p.Sexo, ["Hombre", "Mujer"], { a: "Sexo" })}</label></div>
     <div class="datos"><div><b>${fmt(d.MLG, 1)} kg</b><span>Masa libre de grasa</span></div><div><b>${fmt(d.TMB)}</b><span>${PUB ? "kcal/día que gastas en reposo" : "kcal/día de TMB (Cunningham)"}</span></div>${AV() ? `<div><b>${fmt(d.VO2L, 2)}</b><span>VO2max en L/min</span></div>` : `<div><b>${fmt(d.TMB * M.n(p.PAL))}</b><span>kcal/día sin contar el entreno</span></div>`}</div>` +
@@ -1406,7 +1425,7 @@ function R_ea() {
   return cabecera("Calculadora 1", "Disponibilidad energética", "Energía que queda para el resto del cuerpo después de pagar el entrenamiento.") +
     `<div class="barra"><label class="campo">Primer día ${fFecha("ingesta.inicio", S.ingesta.inicio, { a: "Primer día" })}</label></div>` +
     tabla(["Día", "Ingesta kcal", "Gasto ejercicio", "Min", "EA", "Zona", "EA corregida"], filas, pie) +
-    (haEj ? `<p class="nota prov-t">Las kcal en ámbar son un ejemplo (38,5 kcal/kg, la media de los atletas de Rothschild). Sustitúyelas por las tuyas.</p>` : "") +
+    (haEj ? `<p class="nota prov-t">Las kcal en naranja son un ejemplo (38,5 kcal/kg, la media de los atletas de Rothschild). Sustitúyelas por las tuyas.</p>` : "") +
     `<figure>${G.ea(r.dias)}</figure><p class="nota">EA = (ingesta − gasto del ejercicio) / MLG. Los cortes 30 y 45 vienen de mujeres; en hombres los problemas parecen aparecer más abajo (~9–25). Un día suelto no significa nada: mira la media. La EA corregida descuenta lo que habrías gastado en reposo.</p>`;
 }
 
@@ -1424,7 +1443,7 @@ function R_intradia() {
   return cabecera("Calculadora 2", "Balance energético intradía", "Compara dos repartos del mismo día: A, lo que haces, y B, lo que propones.") +
     `<h3>Sesiones del día</h3>` + tabla(["Inicio", "Deporte", "Min", "Intensidad", "~Tipo", "~kJ", "~TSS", "~kcal manual", "~Carga previa", "~Método", "kcal", "CHO g"], ses) +
     `<p class="nota">Escribe la hora como 18:30. No admite sesiones que crucen la medianoche.</p>` +
-    `<h3>Actividad de cada hora</h3><p class="nota">Toca una hora para cambiarla: claro, reposo u oficina; gris, sueño; ámbar, activo ligero.</p><div class="horas">${S.dia.act.map((a, h) => `<button type="button" class="${cls[a] || "re"}" data-cic="${h}" aria-label="${h} h: ${esc(a)}">${h}</button>`).join("")}</div>` +
+    `<h3>Actividad de cada hora</h3><p class="nota">Toca una hora para cambiarla: claro, reposo u oficina; gris, sueño; naranja, activo ligero.</p><div class="horas">${S.dia.act.map((a, h) => `<button type="button" class="${cls[a] || "re"}" data-cic="${h}" aria-label="${h} h: ${esc(a)}">${h}</button>`).join("")}</div>` +
     (S.dia.ejemplo ? `<p class="nota prov-t">Las comidas son un ejemplo con el mismo total en A y B. Sustitúyelas por las tuyas.</p>` : "") +
     `<div class="dos"><div><h3>A: lo que haces</h3>${comidas("A")}</div><div><h3>B: lo que propones</h3>${comidas("B")}</div></div>` +
     `<h3>Resultado</h3>` + tabla(["", "A", "B"], [est("Ingesta (kcal)", "kcal"), est("Gasto total (kcal)", "gasto"), est("Saldo final (kcal)", "saldo"), est("HC total (g)", "hc"), est("Horas con déficit &gt;300 kcal", "n300"), est("Horas con déficit &gt;400 kcal", "n400"), est("Déficit máximo (kcal)", "min"), est("Hora del déficit máximo", "hora"), est("Glucógeno mínimo (g, modelo)", "glMin")]) +
@@ -1492,7 +1511,7 @@ function R_diario() {
 function R_herramientas() {
   if (PUB) return cabecera("Herramientas", "Tus calculadoras", "Funcionan en esta página. Tus datos se guardan solo en este navegador.") +
     `<div class="herr">${D.herr.map(h => `<div><span><h3><a href="#${h.v}">${h.t}</a></h3><p>${h.d}</p></span><a class="btn2" href="#${h.v}">Abrir</a></div>`).join("")}</div>
-    <p class="nota">Empiezan con datos de ejemplo, marcados en ámbar. Si borras los datos del navegador o cambias de dispositivo, tendrás que volver a escribirlos.</p>`;
+    <p class="nota">Empiezan con datos de ejemplo, marcados en naranja. Si borras los datos del navegador o cambias de dispositivo, tendrás que volver a escribirlos.</p>`;
   const ok = D.test.filter(c => { const r = M.sesion(c.p, c.s, c.prev); return r && Math.abs(r.kcal - c.kcal) <= 0.5 && Math.abs(r.cho - c.cho) <= 0.5 && r.metodo === c.m; }).length;
   return cabecera("Calculadoras", "Las calculadoras y sus Excel", "Son cinco. Funcionan en esta página y guardan tus datos para que los veas en cualquier dispositivo.") +
     `<div class="herr">${D.herr.map((h, i) => `<div><span><h3><a href="#${h.v}">${h.t}</a></h3><p>${h.d}</p></span><button class="btn2" type="button" data-bajar="${i}"${dl ? "" : " hidden"}>Excel</button></div>`).join("")}</div>
