@@ -191,11 +191,6 @@ nav.indice { max-height: calc(100vh - 40px); overflow-y: auto }
 .firma { font: 400 13px var(--mono); color: var(--muted); margin-top: 22px }
 .aviso { border-left: 3px solid var(--cho); padding: 4px 0 4px 14px; font-size: 16px; color: var(--muted); margin-top: 26px }
 .aviso strong { color: var(--ink) }
-.cartas { margin-top: 34px; padding: 22px 24px; border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 3px; background: var(--panel) }
-.cartas h3 { margin: 0; font-size: 26px }
-.cartas p { margin-top: 10px }
-.cartas a { display: inline-block; max-width: 100%; margin-top: 16px; padding: 9px 16px; border-radius: 3px; background: var(--accent); color: var(--bg); font: 600 18px var(--display); text-align: center; text-decoration: none; overflow-wrap: anywhere }
-.cartas a:hover { text-decoration: underline }
 
 .mapa { list-style: none; padding: 0; margin-top: 18px; gap: 0; border-top: 1px solid var(--line) }
 .mapa li { border-bottom: 1px solid var(--line) }
@@ -284,6 +279,18 @@ nav.indice { max-height: calc(100vh - 40px); overflow-y: auto }
 .x-ideas { list-style: none; padding: 0; margin-top: 6px; font-size: 16px }
 .x-ideas li { padding: 3px 0 }
 .x-ideas li.si { color: var(--ok) } .x-ideas li.no { color: var(--deficit) }
+.cartas { margin-top: 34px; padding: 22px 24px; border: 1px solid var(--line); border-left: 4px solid var(--cho); border-radius: 3px; background: var(--panel); max-width: 760px }
+.cartas h3 { margin: 0; font-size: 26px }
+.cartas p { margin-top: 10px }
+.alta-fila { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px }
+.alta-fila input { flex: 1 1 220px; min-width: 0; font: 400 17px var(--body); color: var(--ink); background: var(--bg); border: 2px solid var(--ink); border-radius: 0; padding: 10px 12px }
+.alta-fila input:focus-visible { outline: 2px solid var(--cho); outline-offset: 1px }
+button.btn-g { border: 0; cursor: pointer }
+button.btn-g[disabled] { opacity: .6; cursor: default }
+.alta-acepto { display: flex; gap: 10px; align-items: flex-start; margin-top: 12px; font-size: 14.5px; line-height: 1.5; color: var(--muted); cursor: pointer }
+.alta-acepto input { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--cho) }
+.alta-r .fb { margin-top: 14px; font-size: 16px }
+.alta-r .fb.bien { color: var(--ok) } .alta-r .fb.mal { color: var(--deficit) }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap }
 .mito { padding: 12px 0; border-bottom: 1px solid var(--line) }
 .mito p { margin: 0; font-size: 17px }
@@ -351,6 +358,12 @@ table.simple td, table.simple th { white-space: normal }
   <p class="ante">Aprende a comer y beber según lo que entrenas, sin saber nada de nutrición al empezar. Válido para correr, pedalear, nadar o lo que practiques.</p>
   <p>Cada paso tiene una explicación con ejemplos de la vida diaria, un vídeo animado y ejercicios que se hacen aquí mismo. Al final de cada paso te toca explicarlo con tus palabras: si sabes contárselo a alguien que no sabe nada, lo has entendido. Al terminar tendrás tu semana planificada con tus propios números.</p>
   <div class="seguir"><a class="btn-g" id="seguir" href="#p1">Empezar por el paso 1</a></div>
+  <aside class="cartas" id="cartas-ini" aria-labelledby="cartas-ini-t">
+    <h3 id="cartas-ini-t">Las cartas de Trina</h3>
+    <p>Cuando publico algo nuevo sobre nutrición y deportes de resistencia, te llega un aviso por correo. Sin spam y con baja en un clic.</p>
+    <p>La suscripción es gratuita y voluntaria. Puedes seguir el curso completo sin registrarte.</p>
+    <div data-form-alta="Suscribirme"></div>
+  </aside>
 
   <h3>Antes de empezar, tus datos</h3>
   <p>Con el peso basta para casi todo. Los ejercicios y las calculadoras usarán estos números. Los recuadros en naranja claro tienen valores de ejemplo: cámbialos por los tuyos.</p>
@@ -441,11 +454,11 @@ table.simple td, table.simple th { white-space: normal }
       <li>La fibra es un carbohidrato que apenas aporta energía, pero importa para la salud intestinal. Va mejor lejos del entrenamiento intenso.</li>
     </ul>
   </details>
-  <aside class="cartas" aria-labelledby="cartas-p1">
-    <h3 id="cartas-p1">¿Quieres seguir entendiendo el porqué?</h3>
+  <aside class="cartas" id="cartas-p1" aria-labelledby="cartas-p1-t">
+    <h3 id="cartas-p1-t">¿Quieres seguir entendiendo el porqué?</h3>
     <p>Lo que hace un élite tiene sentido dentro de su cuerpo, sus años de entrenamiento y el apoyo que lo rodea. Aquí aprendes a tomar decisiones para tus sesiones. En mis cartas desarrollo más ideas sobre nutrición y resistencia.</p>
     <p>La suscripción es gratuita y voluntaria. Puedes seguir el curso completo sin registrarte.</p>
-    <a href="https://tri-naranjus.com/newsletter/">Quiero recibir las cartas de Trina</a>
+    <div data-form-alta="Quiero recibir las cartas"></div>
   </aside>
 </section>
 
@@ -862,11 +875,11 @@ table.simple td, table.simple th { white-space: normal }
     <li>Acabas una sesión larga pesando más que al empezar, o con dolor de cabeza, náuseas o hinchazón tras beber mucho. Deja de beber y busca atención médica si empeora.</li>
   </ul>
   <p class="nota">Eres una sola persona, sin grupo de comparación y sabiendo lo que pruebas. Una mejora puede deberse a la forma o a la ilusión. Aun así, es la mejor información que tendrás sobre ti.</p>
-  <aside class="cartas" aria-labelledby="cartas-p9">
-    <h3 id="cartas-p9">Tu plan cambiará contigo</h3>
+  <aside class="cartas" id="cartas-p9" aria-labelledby="cartas-p9-t">
+    <h3 id="cartas-p9-t">Tu plan cambiará contigo</h3>
     <p>Ya tienes un punto de partida. Cuando cambien tus sesiones, podrás revisar lo que comes sin copiar la semana de otro deportista. En mis cartas sigo explorando estas preguntas con más contexto.</p>
     <p>Si te apetece recibirlas, puedes suscribirte gratis. Es una elección separada del curso.</p>
-    <a href="https://tri-naranjus.com/newsletter/">Seguir aprendiendo por email</a>
+    <div data-form-alta="Seguir aprendiendo por email"></div>
   </aside>
 </section>
 
@@ -2149,6 +2162,39 @@ function comparaExplica(id) {
   mod.hidden = false;
 }
 document.addEventListener("click", e => { const b = e.target.closest("[data-x]"); if (b) comparaExplica(b.dataset.x); });
+
+/* ---------- Newsletter: suscripción voluntaria ---------- */
+const CLAVE_A = "cho-cero-alta";
+const BREVO = "https://59501545.sibforms.com/serve/MUIFAF96SJcwfJrW7H2SjZFR9bkZ9E4SwWuzhkjCFlHsStl3eJeQzzTiKTjGxJd4dBrnts-KFiUSiNrti4nrUF3qNzaJzyM5Z79krzcamMO9LdrgaliucjfIHBmvIZpI3FdgK0CLNY5xtfd9rm_im0Gba0qcOh_mOLGIWO6ynRY6JYTq6Zc4Mm7b_MUjOer2MkfXfjLTU6s28pwE";
+let altaMem = false;
+const deAlta = () => { if (altaMem) return true; try { return !!localStorage.getItem(CLAVE_A); } catch (e) { return false; } };
+const PRIV = `<a href="https://tri-naranjus.com/politica-de-privacidad" target="_blank" rel="noopener">política de privacidad</a>`;
+document.querySelectorAll("[data-form-alta]").forEach((el, n) => {
+  const k = "al" + n;
+  el.innerHTML = `<form class="f-alta" data-k="${k}" novalidate><label class="sr" for="${k}-email">Tu correo</label><div class="alta-fila"><input type="email" id="${k}-email" autocomplete="email" placeholder="tu@correo.com"><button class="btn-g" type="submit" id="${k}-b">${el.dataset.formAlta}</button></div><label class="alta-acepto"><input type="checkbox" id="${k}-acepto"><span>Acepto recibir la newsletter y el tratamiento de mi correo según la ${PRIV}. El envío lo gestiona Brevo.</span></label></form><div class="alta-r" id="${k}-r" aria-live="polite"></div>`;
+});
+// Quien ya se suscribió en este navegador no vuelve a ver la invitación
+if (deAlta()) document.querySelectorAll(".cartas").forEach(c => { c.hidden = true; });
+document.addEventListener("submit", async e => {
+  const f = e.target.closest(".f-alta");
+  if (!f) return;
+  e.preventDefault();
+  const k = f.dataset.k, em = $(k + "-email").value.trim(), r = $(k + "-r"), b = $(k + "-b"), etiqueta = b.textContent;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { r.innerHTML = `<p class="fb mal">Escribe un correo válido.</p>`; $(k + "-email").focus(); return; }
+  if (!$(k + "-acepto").checked) { r.innerHTML = `<p class="fb mal">Marca la casilla de aceptación para suscribirte.</p>`; $(k + "-acepto").focus(); return; }
+  b.disabled = true; b.textContent = "Enviando…";
+  const cuerpo = new URLSearchParams({ EMAIL: em, OPT_IN: "1", locale: "es", email_address_check: "" });
+  try {
+    // Brevo no admite CORS: la respuesta es opaca, pero el alta llega y Brevo manda el correo de confirmación
+    await fetch(BREVO, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: cuerpo.toString() });
+    altaMem = true;
+    try { localStorage.setItem(CLAVE_A, new Date().toISOString().slice(0, 10)); } catch (err) {}
+    document.querySelectorAll(".f-alta").forEach(x => { x.hidden = true; });
+    r.innerHTML = `<p class="fb bien">Gracias. Te llegará un correo de Brevo para confirmar la suscripción: ábrelo y pulsa el botón de confirmación, o las cartas no te llegarán.</p>`;
+  } catch (err) {
+    r.innerHTML = `<p class="fb mal">No se ha podido enviar desde esta página.</p><p>Puedes suscribirte en <a href="https://tri-naranjus.com/newsletter/" target="_blank" rel="noopener">tri-naranjus.com/newsletter</a>, que se abre en otra pestaña.</p>`;
+  } finally { b.disabled = false; b.textContent = etiqueta; }
+});
 
 /* ---------- Enganches con la aplicación ---------- */
 window.alRuta = h => {
